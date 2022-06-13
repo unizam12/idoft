@@ -46,3 +46,7 @@ jobs:
         run: >
           python format_checker/main.py ${{github.event.before}}
           ${{github.event.after}}
+      - name: Run test
+        run: mvn -pl typescript-generator-core test -Dtest=cz.habarta.typescript.generator.TaggedUnionsTest#testTaggedUnionsWithInterfaces
+      - name: Run test with NonDex shuffling
+        run: mvn -pl typescript-generator-core edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=cz.habarta.typescript.generator.TaggedUnionsTest#testTaggedUnionsWithInterfaces
